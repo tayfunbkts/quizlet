@@ -264,6 +264,7 @@ function loadNewCard() {
 document.querySelector('.card').addEventListener('click', function() {
     const card = document.querySelector('.card');
     if (card.classList.contains('flipped')) {
+        card.classList.toggle('flipped'); // Kartı çevir
         loadNewCard(); // Kart çevrilmişse yeni karta geç
     } else {
         card.classList.toggle('flipped'); // Kartı çevir
