@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Çeviri Kartları</title>
+    <title>Flashcards</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,21 +11,30 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background-color: #f8f8f8;
+        }
+        .container {
+            text-align: center;
         }
         .card {
+            border: 1px solid #ccc;
+            padding: 20px;
             width: 300px;
-            height: 200px;
+            text-align: center;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.6s;
             perspective: 1000px;
+            border-radius: 8px;
         }
         .card-inner {
+            position: relative;
             width: 100%;
             height: 100%;
-            position: relative;
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
-        .is-flipped {
+        .card.flipped .card-inner {
             transform: rotateY(180deg);
         }
         .card-front, .card-back {
@@ -36,27 +45,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-size: 24px;
-            cursor: pointer;
+            font-size: 1.5em;
+            border-radius: 8px;
         }
         .card-front {
-            background-color: #f8f9fa;
+            background-color: #fff;
         }
         .card-back {
-            background-color: #dff9fb;
+            background-color: #4CAF50;
+            color: red;
             transform: rotateY(180deg);
+        }
+        .buttons {
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <div class="card" onclick="flipCard()">
-        <div class="card-inner" id="card-inner">
-            <div class="card-front" id="front">Almanca kelime</div>
-            <div class="card-back" id="back">İngilizce anlam</div>
+
+    <div class="container">
+        <div class="buttons">
+            <button id="toEnglish">Deutsch → Englisch</button>
+            <button id="toGerman">English → German</button>
+        </div>
+
+        <div id="flashcard" class="card">
+            <div class="card-inner">
+                <div class="card-front">Click to reveal the answer</div>
+                <div class="card-back">Answer</div>
+            </div>
         </div>
     </div>
 

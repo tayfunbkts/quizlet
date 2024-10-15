@@ -1,4 +1,3 @@
-// JSON formatında Almanca ve İngilizce kelimeler
 let flashcards = [
     { question: "Abitur (Sg.)", answer: "high school graduation exam" },
     { question: "Absage - n", answer: "Cancellation" },
@@ -233,47 +232,43 @@ let flashcards = [
     { question: "zustimmen", answer: "to agree" }
 ];
 
+let currentCard = {};
+let languageDirection = "germanToEnglish"; // Varsayılan dil yönü Almanca → İngilizce
 
-let currentCard = {}; // Mevcut kartı tutacak değişken
-let isFlipped = false; // Kartın şu an çevrili olup olmadığını takip etmek için
+document.getElementById('toEnglish').addEventListener('click', function() {
+    languageDirection = "germanToEnglish";
+    loadNewCard();
+});
 
-// Rastgele bir kart seçen fonksiyon
-function getRandomCard() {
-    const randomIndex = Math.floor(Math.random() * flashcards.length);
-    return flashcards[randomIndex];
-}
+document.getElementById('toGerman').addEventListener('click', function() {
+    languageDirection = "englishToGerman";
+    loadNewCard();
+});
 
-// Kartı gösteren fonksiyon
-function showCard() {
-    const frontElement = document.getElementById("front");
-    const backElement = document.getElementById("back");
+function loadNewCard() {
+    // Rastgele bir kart seç
+    currentCard = flashcards[Math.floor(Math.random() * flashcards.length)];
 
-    currentCard = getRandomCard(); // Yeni bir rastgele kart seç
-    
-    // Almanca soruyu ve İngilizce cevabı güncelle
-    frontElement.innerText = currentCard.question;
-    backElement.innerText = "Click to reveal the answer"; // İlk başta İngilizce anlam gizli
-}
-
-// Kartı çevirme fonksiyonu
-function flipCard() {
-    const cardInner = document.getElementById("card-inner");
-    const backElement = document.getElementById("back");
-
-    if (!isFlipped) {
-        // Kartı çevir ve İngilizce cevabı göster
-        cardInner.classList.add("is-flipped");
-        backElement.innerText = currentCard.answer; // İngilizce cevabı göster
-        isFlipped = true; // Kart çevrildi
+    if (languageDirection === "germanToEnglish") {
+        document.querySelector('.card-front').textContent = currentCard.question;
+        document.querySelector('.card-back').textContent = currentCard.answer;
     } else {
-        // Kartı geri çevir ve yeni bir kart göster
-        cardInner.classList.remove("is-flipped");
-        setTimeout(() => {
-            showCard(); // Yeni kartı göstermeden önce birkaç saniye bekle
-            isFlipped = false; // Kartı geri çevirdik
-        }, 600); // Dönüş animasyonu için bekleme süresi
+        document.querySelector('.card-front').textContent = currentCard.answer;
+        document.querySelector('.card-back').textContent = currentCard.question;
     }
+
+    // Kartı ilk yüklemede geri çevir
+    document.querySelector('.card').classList.remove('flipped');
 }
 
-// Sayfa yüklendiğinde ilk kartı göster
-window.onload = showCard;
+document.querySelector('.card').addEventListener('click', function() {
+    const card = document.querySelector('.card');
+    if (card.classList.contains('flipped')) {
+        loadNewCard(); // Kart çevrilmişse yeni karta geç
+    } else {
+        card.classList.toggle('flipped'); // Kartı çevir
+    }
+});
+
+// Sayfa yüklendiğinde ilk kartı yükle
+loadNewCard();
