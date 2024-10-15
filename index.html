@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çeviri Kartları</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .card {
+            width: 300px;
+            height: 200px;
+            perspective: 1000px;
+        }
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .is-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .card-front {
+            background-color: #f8f9fa;
+        }
+        .card-back {
+            background-color: #dff9fb;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="card" onclick="flipCard()">
+        <div class="card-inner" id="card-inner">
+            <div class="card-front" id="front">Almanca kelime</div>
+            <div class="card-back" id="back">İngilizce anlam</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
