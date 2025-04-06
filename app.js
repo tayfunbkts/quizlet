@@ -1,6 +1,7 @@
 import { a2Flashcards } from "./a2.js";
 import { c1verb } from "./c1.js";
 import { c1worter} from "./c1worter.js";
+import { c1adjektiv} from "./c1adjektiv.js";
 // if (a2Flashcards && c1verb) {
 //     console.log("modules loaded")
     
@@ -21,6 +22,9 @@ document.querySelector(".top-buttons").addEventListener("click", function(event)
         loadNewCard();
     }else if(event.target.id == 'c1worter'){
         flashcards = c1worter
+        loadNewCard();
+    }else if(event.target.id == 'c1adjektiv'){
+        flashcards = c1adjektiv
         loadNewCard();
     }
 })
