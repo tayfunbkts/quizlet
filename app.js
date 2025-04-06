@@ -1,11 +1,12 @@
 import { a2Flashcards } from "./a2.js";
 import { c1verb } from "./c1.js";
-if (a2Flashcards && c1verb) {
-    console.log("modules loaded")
+import { c1worter} from "./c1worter.js";
+// if (a2Flashcards && c1verb) {
+//     console.log("modules loaded")
     
-}else{
-    console.log("hata")
-}
+// }else{
+//     console.log("hata")
+// }
 // console.log(a2Flashcards)
 
 let flashcards = c1verb
@@ -17,6 +18,9 @@ document.querySelector(".top-buttons").addEventListener("click", function(event)
         loadNewCard();
     }else if(event.target.id == 'c1verb'){
         flashcards = c1verb
+        loadNewCard();
+    }else if(event.target.id == 'c1worter'){
+        flashcards = c1worter
         loadNewCard();
     }
 })
