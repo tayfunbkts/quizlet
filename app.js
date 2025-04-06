@@ -10,24 +10,42 @@ import { c1adjektiv} from "./c1adjektiv.js";
 // }
 // console.log(a2Flashcards)
 
+
+
 let flashcards = c1verb
+document.getElementById("c1verb").style.backgroundColor = "#81c784";
+
+let btns = document.querySelectorAll(".top-buttons button");  // Tüm butonları seç
+
+btns.forEach(button => {
+    button.addEventListener("click", function() {
+        // Tüm butonları varsayılan rengine döndür
+        btns.forEach(btn => {
+            btn.style.backgroundColor = "#ff9800";  // Varsayılan turuncu renk
+        });
+
+        // Tıklanan butonu pastel yeşil yap
+        this.style.backgroundColor = "#81c784";
+    });
+});
+
+// Çalışma kitabı seçimi yapar
+const flashcardTypes = {
+    'a2': a2Flashcards,
+    'c1verb': c1verb,
+    'c1worter': c1worter,
+    'c1adjektiv': c1adjektiv
+};
 
 document.querySelector(".top-buttons").addEventListener("click", function(event) {
-    console.log(event.target.id)
-    if (event.target.id == 'a2') {
-        flashcards = a2Flashcards
-        loadNewCard();
-    }else if(event.target.id == 'c1verb'){
-        flashcards = c1verb
-        loadNewCard();
-    }else if(event.target.id == 'c1worter'){
-        flashcards = c1worter
-        loadNewCard();
-    }else if(event.target.id == 'c1adjektiv'){
-        flashcards = c1adjektiv
+    const flashcardsType = flashcardTypes[event.target.id];
+    
+    if (flashcardsType) {
+        flashcards = flashcardsType;
         loadNewCard();
     }
-})
+});
+
 // Google Sheet Formülü: ="{ question: """ & A2 & """, answer: """ & B2 & """ },"
 
 let currentCard = {};
