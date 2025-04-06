@@ -29,6 +29,15 @@
             font-size: 16px;
             transition: background-color 0.3s ease;
 }
+        .buttons button {
+            color: white; /* Beyaz yazı rengi */
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+}
 
         .container {
             text-align: center;
@@ -89,8 +98,8 @@
             <button id="c1adjektiv">C1 Adjektiv</button>
         </div>
         <div class="buttons">
-            <button id="toEnglish">Deutsch → Türkisch</button>
-            <button id="toGerman">Türkisch → German</button>
+            <button id="toEnglish" style="background-color: #81c784;" onclick="changeColor(this, 'toEnglish')">Deutsch → Türkisch</button>
+            <button id="toGerman" style="background-color: #ff9800;" onclick="changeColor(this, 'toGerman')">Türkisch → German</button>
         </div>
 
         <div id="flashcard" class="card">
@@ -102,5 +111,20 @@
     </div>
 
     <script type="module"  src="app.js"></script>
+
+    <script>
+        function changeColor(button, lang) {
+            // Başlangıçta her iki butonun rengini turuncu yap
+            document.getElementById("toEnglish").style.backgroundColor = "#ff9800";
+            document.getElementById("toGerman").style.backgroundColor = "#ff9800";
+    
+            // Seçilen butonu yeşil yap
+            if (lang === 'toEnglish') {
+                button.style.backgroundColor = "#81c784"; // Yeşil
+            } else if (lang === 'toGerman') {
+                button.style.backgroundColor = "#81c784"; // Yeşil
+            }
+        }
+    </script>
 </body>
 </html>
