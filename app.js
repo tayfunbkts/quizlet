@@ -3,13 +3,15 @@ import { c1verb } from "./c1.js";
 if (a2Flashcards && c1verb) {
     console.log("modules loaded")
     
+}else{
+    console.log("hata")
 }
 // console.log(a2Flashcards)
 
 let flashcards = c1verb
 
 document.querySelector(".top-buttons").addEventListener("click", function(event) {
-    // console.log(Boolean(event.target.id))
+    console.log(event.target.id)
     if (event.target.id == 'a2') {
         flashcards = a2Flashcards
         loadNewCard();
