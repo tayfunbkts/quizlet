@@ -1,5 +1,9 @@
 import { a2Flashcards } from "./a2.js";
 import { c1verb } from "./c1.js";
+if (a2Flashcards && c1verb) {
+    console.log("modules loaded")
+    
+}
 // console.log(a2Flashcards)
 
 let flashcards = c1verb
