@@ -13,6 +13,11 @@
             height: 100vh;
             background-color: #f8f8f8;
         }
+        .top-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
         .container {
             text-align: center;
         }
@@ -63,7 +68,14 @@
 </head>
 <body>
 
+    
     <div class="container">
+        <div class="top-buttons">
+            <button id="a2">A2</button>
+            <button id="c1verb">C1 Verb</button>
+            <button id="c1worter">C1 Wörter</button>
+            <button id="c1adjektiv">C1 Adjektiv</button>
+        </div>
         <div class="buttons">
             <button id="toEnglish">Deutsch → Türkisch</button>
             <button id="toGerman">Türkisch → German</button>
@@ -77,6 +89,6 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script type="module"  src="app.js"></script>
 </body>
 </html>
